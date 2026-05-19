@@ -11,7 +11,9 @@ const featuredProducts = [
         description: "Premium noise-cancelling headphones with crystal-clear sound.",
         price: 2999,
         rating: 4.8,
-        icon: "fa-headphones"
+        category: "electronics",
+        icon: "fa-headphones",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 2,
@@ -19,7 +21,9 @@ const featuredProducts = [
         description: "Track your fitness, heart rate, and daily activities.",
         price: 4999,
         rating: 4.7,
-        icon: "fa-clock"
+        category: "electronics",
+        icon: "fa-clock",
+        image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 3,
@@ -27,7 +31,9 @@ const featuredProducts = [
         description: "RGB mechanical keyboard designed for performance.",
         price: 3499,
         rating: 4.9,
-        icon: "fa-keyboard"
+        category: "electronics",
+        icon: "fa-keyboard",
+        image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 4,
@@ -35,7 +41,9 @@ const featuredProducts = [
         description: "Lightweight and comfortable shoes for everyday running.",
         price: 2599,
         rating: 4.6,
-        icon: "fa-shoe-prints"
+        category: "fashion",
+        icon: "fa-shoe-prints",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 5,
@@ -43,7 +51,9 @@ const featuredProducts = [
         description: "Spacious and durable backpack for work and travel.",
         price: 1999,
         rating: 4.7,
-        icon: "fa-backpack"
+        category: "accessories",
+        icon: "fa-backpack",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 6,
@@ -51,7 +61,69 @@ const featuredProducts = [
         description: "Portable speaker with deep bass and long battery life.",
         price: 2799,
         rating: 4.8,
-        icon: "fa-volume-high"
+        category: "electronics",
+        icon: "fa-volume-high",
+        image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 7,
+        name: "Designer T-Shirt",
+        description: "Comfortable cotton t-shirt with a modern fit.",
+        price: 999,
+        rating: 4.5,
+        category: "fashion",
+        icon: "fa-shirt",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 8,
+        name: "Luxury Sofa Cushion",
+        description: "Elegant decorative cushion for your living room.",
+        price: 799,
+        rating: 4.4,
+        category: "home",
+        icon: "fa-couch",
+        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 9,
+        name: "Table Lamp",
+        description: "Minimalist lamp with warm ambient lighting.",
+        price: 1499,
+        rating: 4.6,
+        category: "home",
+        icon: "fa-lightbulb",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 10,
+        name: "Sunglasses",
+        description: "Stylish UV-protected sunglasses.",
+        price: 1299,
+        rating: 4.5,
+        category: "accessories",
+        icon: "fa-glasses",
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 11,
+        name: "Leather Wallet",
+        description: "Premium genuine leather wallet.",
+        price: 899,
+        rating: 4.7,
+        category: "accessories",
+        icon: "fa-wallet",
+        image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        id: 12,
+        name: "Coffee Maker",
+        description: "Brew rich and aromatic coffee at home.",
+        price: 5999,
+        rating: 4.8,
+        category: "home",
+        icon: "fa-mug-hot",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
     }
 ];
 
@@ -71,8 +143,17 @@ function renderFeaturedProducts() {
             (product) => `
             <div class="product-card glass-card">
                 <div class="product-image">
-                    <i class="fas ${product.icon}"></i>
-                </div>
+    <img
+        src="${product.image}"
+        alt="${product.name}"
+        class="product-img"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <div class="product-icon-fallback" style="display:none;">
+        <i class="fas ${product.icon}"></i>
+    </div>
+</div>
 
                 <h3>${product.name}</h3>
 
@@ -213,13 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeMobileMenu();
     initializeNewsletter();
 });
-
-// ==========================================================
-// STEP 2 - PRODUCTS PAGE FUNCTIONALITY
-// Search, Filter, Sort, and Dynamic Product Rendering
-// ==========================================================
-
-// ================= COMPLETE PRODUCT CATALOG =================
+// ================= COMPLETE PRODUCT CATALOG WITH IMAGES =================
 const allProducts = [
     {
         id: 1,
@@ -228,7 +303,8 @@ const allProducts = [
         price: 2999,
         rating: 4.8,
         category: "electronics",
-        icon: "fa-headphones"
+        icon: "fa-headphones",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 2,
@@ -237,7 +313,8 @@ const allProducts = [
         price: 4999,
         rating: 4.7,
         category: "electronics",
-        icon: "fa-clock"
+        icon: "fa-clock",
+        image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 3,
@@ -246,7 +323,8 @@ const allProducts = [
         price: 3499,
         rating: 4.9,
         category: "electronics",
-        icon: "fa-keyboard"
+        icon: "fa-keyboard",
+        image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 4,
@@ -255,7 +333,8 @@ const allProducts = [
         price: 2599,
         rating: 4.6,
         category: "fashion",
-        icon: "fa-shoe-prints"
+        icon: "fa-shoe-prints",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 5,
@@ -264,7 +343,8 @@ const allProducts = [
         price: 1999,
         rating: 4.7,
         category: "accessories",
-        icon: "fa-backpack"
+        icon: "fa-backpack",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 6,
@@ -273,7 +353,8 @@ const allProducts = [
         price: 2799,
         rating: 4.8,
         category: "electronics",
-        icon: "fa-volume-high"
+        icon: "fa-volume-high",
+        image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 7,
@@ -282,7 +363,8 @@ const allProducts = [
         price: 999,
         rating: 4.5,
         category: "fashion",
-        icon: "fa-shirt"
+        icon: "fa-shirt",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 8,
@@ -291,7 +373,8 @@ const allProducts = [
         price: 799,
         rating: 4.4,
         category: "home",
-        icon: "fa-couch"
+        icon: "fa-couch",
+        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 9,
@@ -300,7 +383,8 @@ const allProducts = [
         price: 1499,
         rating: 4.6,
         category: "home",
-        icon: "fa-lightbulb"
+        icon: "fa-lightbulb",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 10,
@@ -309,7 +393,8 @@ const allProducts = [
         price: 1299,
         rating: 4.5,
         category: "accessories",
-        icon: "fa-glasses"
+        icon: "fa-glasses",
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 11,
@@ -318,7 +403,8 @@ const allProducts = [
         price: 899,
         rating: 4.7,
         category: "accessories",
-        icon: "fa-wallet"
+        icon: "fa-wallet",
+        image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 12,
@@ -327,10 +413,10 @@ const allProducts = [
         price: 5999,
         rating: 4.8,
         category: "home",
-        icon: "fa-mug-hot"
+        icon: "fa-mug-hot",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
     }
 ];
-
 // ================= PRODUCTS PAGE STATE =================
 let currentCategory = "all";
 let currentSearch = "";
@@ -396,8 +482,17 @@ function renderProductsPage() {
             (product) => `
             <div class="product-card glass-card">
                 <div class="product-image">
-                    <i class="fas ${product.icon}"></i>
-                </div>
+    <img 
+        src="${product.image}" 
+        alt="${product.name}" 
+        class="product-img"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <div class="product-icon-fallback" style="display:none;">
+        <i class="fas ${product.icon}"></i>
+    </div>
+</div>
 
                 <h3>${product.name}</h3>
 
